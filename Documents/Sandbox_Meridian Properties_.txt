@@ -1,0 +1,28 @@
+MPESA_CONSUMER_KEY=PS1PhX8Sg5VqaEAGeyLS2LWohRr9dvpw6JE30MX2WZdEP36s
+
+MPESA_CONSUMER_SECRET=S5jurVpyxXFSGNBcob0v1KPNX3pj82e0zKRmDlqOeb4TJBdrjNQmf69F97LTgU3a
+
+MPESA_PASSKEY=bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919
+
+MPESA_SHORTCODE=174379
+
+MPESA_CALLBACK_URL=https://4a60-197-248-198-113.ngrok-free.app/api/mpesa/callback
+
+
+MPESA_CALLBACK_SECRET=0bf14f930429fc1c8d0ae2925c8dfe19d4cebb442fca9018
+
+MPESA_ENV=sandbox
+
+
+
+Three things to remember for tomorrow
+ngrok URL changes every time you restart it. If you test M-Pesa again, update MPESA_CALLBACK_URL in .env with the new URL. Vercel's env var stays as your real domain.
+
+dm@gmail.com is on the grandfathered trial — expires 31 Oct 2026. If you need to test expiry behavior again, there's a test-expire-org.js pattern in my earlier message you can recreate.
+
+When you get a real Paybill/Till from Safaricom — the code doesn't change. You just flip MPESA_ENV=production and swap 3 env vars in Vercel.
+
+
+MERIDIAN-ADMIN CREDENTIALS
+Username	admin_readonly
+Password        mUViDrt9hGYe3gcy (If you lose it: edit the user → Edit Password → autogenerate → copy again. It's fine to regenerate)

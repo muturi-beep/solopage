@@ -1,0 +1,58 @@
+MONGO DB = V1tPibU1LTKvYSmx
+MONGO DB(Admin) = zGHBhRrpGGJN8cAL
+
+
+api/
+  index.js         ← 5 lines — just "start the backend"
+
+backend/           ← the SERVER (was inside api/index.js)
+  app.js           ← sets up Express + middleware
+  config/
+    db.js          ← MongoDB connection
+  middleware/
+    auth.js        ← requireAuth, requireRole
+  models/          ← DATABASE layer (Mongoose schemas)
+    User.js
+    Organization.js
+    Property.js
+    Unit.js
+    Maintenance.js
+    Payment.js
+  routes/          ← API layer (one file per area)
+    auth.js
+    organizations.js
+    dashboard.js
+    properties.js
+    units.js
+    tenants.js
+    maintenance.js
+    payments.js
+    profile.js
+  utils/
+    tokens.js      ← signToken, slug, invite code
+
+public/            ← the FRONTEND
+  index.html
+  auth.html
+  dashboard.html   ← thin shell only
+  css/
+    dashboard.css
+  js/
+    api.js         ← the api() fetch helper
+    session.js     ← getSession / setSession / clearSession
+    ui.js          ← toast, fmtMoney, pillForStatus, esc
+    ledger.js      ← buildTenantLedger + simulateAllocation
+    dashboard/
+      index.js     ← bootstrap + view switching
+      overview.js
+      properties.js
+      units.js
+      tenants.js
+      maintenance.js
+      payments.js
+      documents.js
+      settings.js
+      profile.js
+  images/
+  manifest.json
+  service-worker.js

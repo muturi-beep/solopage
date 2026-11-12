@@ -1,18 +1,15 @@
 (function () {
   "use strict";
 
-  /* ============================================================
-     CONFIG — change everything in one place.
-     ============================================================ */
   var CFG = {
-    name: "[Your Name]",
+    name: "Dev.Minds",
     email: "hello@yourdomain.com",
     phone: "+254700000000",
     whatsapp: "254700000000",
     github: "https://github.com/yourusername",
     linkedin: "https://www.linkedin.com/in/yourusername",
     cv: "/cv.pdf",
-    formEndpoint: "", // e.g. "https://formspree.io/f/xxxxxxx"
+    formEndpoint: "",
   };
 
   /* ---------- 1. Fill placeholders ---------- */
@@ -40,7 +37,7 @@
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------- 3. Mobile menu ---------- */
+  /* ---------- 3. Mobile menu & Accordions ---------- */
   var menu = document.getElementById("mobile-menu");
   var toggle = document.querySelector(".menu-toggle");
   var closeBtn = document.querySelector(".menu-close");
@@ -70,7 +67,28 @@
       closeMenu(true);
     });
 
-  var menuLinks = menu ? menu.querySelectorAll("a") : [];
+  // Mobile Dropdown Accordion Logic
+  var mobileDropdownToggles = document.querySelectorAll(
+    ".mobile-dropdown-toggle",
+  );
+  mobileDropdownToggles.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault(); // Stop it from scrolling immediately
+      var parentLi = this.parentElement;
+      var dropdown = parentLi.querySelector(".mobile-dropdown");
+
+      // Toggle classes for CSS
+      this.classList.toggle("is-open");
+      if (dropdown) {
+        dropdown.classList.toggle("is-open");
+      }
+    });
+  });
+
+  // Close mobile menu when clicking a standard link (not a dropdown toggle)
+  var menuLinks = menu
+    ? menu.querySelectorAll("a:not(.mobile-dropdown-toggle)")
+    : [];
   for (var m = 0; m < menuLinks.length; m++) {
     menuLinks[m].addEventListener("click", function () {
       closeMenu(false);
@@ -156,7 +174,6 @@
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
@@ -217,7 +234,16 @@
       var link = e.target.closest('a[href^="#"]');
       if (!link) return;
       var id = link.getAttribute("href");
-      if (!id || id === "#" || link.hasAttribute("data-case")) return;
+
+      // Ignore if it's a modal trigger, empty, or a mobile accordion toggle
+      if (
+        !id ||
+        id === "#" ||
+        link.hasAttribute("data-case") ||
+        link.classList.contains("mobile-dropdown-toggle")
+      )
+        return;
+
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
@@ -225,4 +251,131 @@
       history.replaceState(null, "", id);
     });
   }
+
+  /* ---------- 8. Navbar Active State (Scrollspy) ---------- */
+  var allNavLinks = document.querySelectorAll(
+    '.nav a[href^="#"], .mobile-menu__nav a[href^="#"]',
+  );
+  var sections = document.querySelectorAll("section[id]");
+
+  if (sections.length > 0 && "IntersectionObserver" in window) {
+    var navObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var currentId = "#" + entry.target.id;
+
+            // 1. Remove active class from ALL links and parent items
+            allNavLinks.forEach(function (link) {
+              link.classList.remove("is-active");
+              var parentLi = link.closest(".has-dropdown");
+              if (parentLi) parentLi.classList.remove("is-active");
+            });
+
+            // 2. Find and highlight matching links
+            allNavLinks.forEach(function (link) {
+              if (link.getAttribute("href") === currentId) {
+                link.classList.add("is-active");
+
+                // 3. If the link is inside a dropdown, highlight the parent too
+                var parentLi = link.closest(".has-dropdown");
+                if (parentLi) {
+                  parentLi.classList.add("is-active");
+                }
+              }
+            });
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px", // Trigger when section hits the upper-middle of screen
+        threshold: 0,
+      },
+    );
+
+    sections.forEach(function (section) {
+      navObserver.observe(section);
+    });
+  }
 })();
+
+/* ---------- 9. Scroll Progress & Back to Top ---------- */
+var progressBar = document.getElementById("scroll-progress");
+var backToTopBtn = document.getElementById("back-to-top");
+
+if (progressBar || backToTopBtn) {
+  window.addEventListener("scroll", function () {
+    // Calculate progress
+    var winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    var height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+
+    if (progressBar) progressBar.style.width = scrolled + "%";
+
+    // Show/hide back to top button after 500px
+    if (backToTopBtn) {
+      if (winScroll > 500) {
+        backToTopBtn.classList.add("is-visible");
+      } else {
+        backToTopBtn.classList.remove("is-visible");
+      }
+    }
+  });
+}
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+/* ---------- 10. Copy to Clipboard ---------- */
+var copyBtns = document.querySelectorAll(".copy-btn");
+copyBtns.forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var textToCopy = this.getAttribute("data-copy");
+
+    // Fallback for older browsers
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy).then(function () {
+        btn.classList.add("is-copied");
+        var originalText = btn.querySelector("span").textContent;
+        btn.querySelector("span").textContent = "Copied!";
+
+        setTimeout(function () {
+          btn.classList.remove("is-copied");
+          btn.querySelector("span").textContent = originalText;
+        }, 2000);
+      });
+    }
+  });
+});
+
+/* ---------- 11. Focus Trap for Modals ---------- */
+// This prevents keyboard users from tabbing into the background page when a modal is open.
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Tab" && openModal) {
+    var focusableEls = openModal.querySelectorAll(
+      "a[href], button:not([disabled]), textarea, input, select",
+    );
+    if (focusableEls.length === 0) return;
+
+    var firstEl = focusableEls[0];
+    var lastEl = focusableEls[focusableEls.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      }
+    } else {
+      if (document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
+  }
+});

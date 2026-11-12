@@ -7,25 +7,25 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
 
-    <title>[Your Name] — Software Developer in Kenya</title>
+    <title>Dev.Minds — Software Developer in Kenya</title>
     <meta
       name="description"
       content="Kenyan software developer building modern websites, web applications and digital products for businesses, startups and clients in Kenya and beyond."
     />
     <link rel="canonical" href="https://yourdomain.com/" />
     <meta name="theme-color" content="#FBFAF6" />
-    <meta name="author" content="[Your Name]" />
+    <meta name="author" content="Dev.Minds" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta
       property="og:site_name"
-      content="[Your Name] — Software Developer in Kenya"
+      content="Dev.Minds — Software Developer in Kenya"
     />
     <meta
       property="og:title"
-      content="[Your Name] — Software Developer in Kenya"
+      content="Dev.Minds — Software Developer in Kenya"
     />
     <meta
       property="og:description"
@@ -35,7 +35,7 @@
     <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
     <meta
       property="og:image:alt"
-      content="[Your Name], software developer in Kenya"
+      content="Dev.Minds, software developer in Kenya"
     />
     <meta property="og:locale" content="en_KE" />
 
@@ -43,7 +43,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="[Your Name] — Software Developer in Kenya"
+      content="Dev.Minds — Software Developer in Kenya"
     />
     <meta
       name="twitter:description"
@@ -63,35 +63,60 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- SCROLL PROGRESS BAR -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- HEADER -->
     <header class="site-header" id="top">
       <div class="container header__inner">
-        <a class="brand" href="#top" aria-label="[Your Name] — back to top">
+        <!-- Brand -->
+        <a class="brand" href="#home" aria-label="Dev.Minds — back to top">
           <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
           <span class="brand__text">
-            <span class="brand__name" data-fill="name">[Your Name]</span>
+            <span class="brand__name">Dev.Minds</span>
             <span class="brand__role">Software Developer · Kenya</span>
           </span>
         </a>
 
+        <!-- DESKTOP NAV -->
         <nav class="nav" aria-label="Primary">
           <ul>
-            <li><a href="#top">Home</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#home" class="is-active">Home</a></li>
+
+            <li class="has-dropdown">
+              <a href="#work" class="dropdown-toggle">Work</a>
+              <ul class="dropdown">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#stats">By the Numbers</a></li>
+                <li><a href="#work">Selected Work</a></li>
+              </ul>
+            </li>
+
+            <li class="has-dropdown">
+              <a href="#services" class="dropdown-toggle">Services</a>
+              <ul class="dropdown">
+                <li><a href="#stack">Technologies</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why">Why Work With Me</a></li>
+                <li><a href="#process">Process</a></li>
+              </ul>
+            </li>
+
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
 
+        <!-- HEADER CTA -->
         <div class="header__cta">
           <a class="btn btn--primary btn--sm" href="#contact"
             >Let's Work Together</a
           >
         </div>
 
+        <!-- MOBILE MENU TOGGLE -->
         <button
           class="menu-toggle"
           type="button"
@@ -99,9 +124,9 @@
           aria-controls="mobile-menu"
           aria-label="Open menu"
         >
-          <span class="menu-toggle__bars" aria-hidden="true"
-            ><span></span><span></span><span></span
-          ></span>
+          <span class="menu-toggle__bars" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
         </button>
       </div>
     </header>
@@ -109,10 +134,10 @@
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <div class="mobile-menu__top">
-        <a class="brand" href="#top">
+        <a class="brand" href="#home">
           <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
           <span class="brand__text">
-            <span class="brand__name" data-fill="name">[Your Name]</span>
+            <span class="brand__name">Dev.Minds</span>
             <span class="brand__role">Software Developer · Kenya</span>
           </span>
         </a>
@@ -121,17 +146,38 @@
         </button>
       </div>
 
+      <!-- MOBILE NAV -->
       <nav class="mobile-menu__nav" aria-label="Mobile">
         <ul>
           <li>
-            <a href="#top"><i>01</i> Home</a>
+            <a href="#home"><i>01</i> Home</a>
           </li>
-          <li>
-            <a href="#work"><i>02</i> Work</a>
+
+          <!-- Mobile Work Dropdown -->
+          <li class="has-dropdown">
+            <a href="#work" class="mobile-dropdown-toggle">
+              <span><i>02</i> Work</span>
+            </a>
+            <ul class="mobile-dropdown">
+              <li><a href="#intro">Introduction</a></li>
+              <li><a href="#stats">By the Numbers</a></li>
+              <li><a href="#work">Selected Work</a></li>
+            </ul>
           </li>
-          <li>
-            <a href="#services"><i>03</i> Services</a>
+
+          <!-- Mobile Services Dropdown -->
+          <li class="has-dropdown">
+            <a href="#services" class="mobile-dropdown-toggle">
+              <span><i>03</i> Services</span>
+            </a>
+            <ul class="mobile-dropdown">
+              <li><a href="#stack">Technologies</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#why">Why Work With Me</a></li>
+              <li><a href="#process">Process</a></li>
+            </ul>
           </li>
+
           <li>
             <a href="#about"><i>04</i> About</a>
           </li>
@@ -156,8 +202,13 @@
     </div>
 
     <main id="main">
-      <!-- HERO -->
-      <section class="hero" aria-labelledby="hero-title">
+      <!-- HERO (data-nav="home") -->
+      <section
+        class="hero"
+        id="home"
+        data-nav="home"
+        aria-labelledby="hero-title"
+      >
         <div class="hero__aurora" aria-hidden="true"></div>
         <div class="container hero__grid">
           <div class="hero__copy">
@@ -268,10 +319,11 @@
         </div>
       </div>
 
-      <!-- INTRO -->
+      <!-- INTRO & STATS (Belongs to Home) -->
       <section
         class="section section--tight"
         id="intro"
+        data-nav="home"
         aria-labelledby="intro-title"
       >
         <div class="container">
@@ -297,9 +349,10 @@
         </div>
       </section>
 
-      <!-- STATS -->
       <section
         class="section section--tight section--paper"
+        id="stats"
+        data-nav="home"
         aria-label="By the numbers"
       >
         <div class="container">
@@ -326,7 +379,12 @@
       </section>
 
       <!-- WORK -->
-      <section class="section" id="work" aria-labelledby="work-title">
+      <section
+        class="section"
+        id="work"
+        data-nav="work"
+        aria-labelledby="work-title"
+      >
         <div class="container">
           <header class="section-head">
             <p class="eyebrow">Selected Work</p>
@@ -389,7 +447,6 @@
                   communicate what the agency offers, and give visitors a direct
                   route to getting in touch.
                 </p>
-
                 <dl class="meta">
                   <div class="meta__item">
                     <dt>My Role</dt>
@@ -404,14 +461,12 @@
                     <dd>Presentation, clarity, enquiry conversion</dd>
                   </div>
                 </dl>
-
                 <ul class="tags">
                   <li>HTML5</li>
                   <li>CSS3</li>
                   <li>JavaScript</li>
                   <li>Responsive Design</li>
                 </ul>
-
                 <div class="project__actions">
                   <a
                     class="btn btn--primary"
@@ -483,7 +538,6 @@
                   identity, work and contact details into one place — built to
                   be the single link you can share with anyone.
                 </p>
-
                 <dl class="meta">
                   <div class="meta__item">
                     <dt>Purpose</dt>
@@ -494,7 +548,6 @@
                     <dd>Render</dd>
                   </div>
                 </dl>
-
                 <ul class="tags">
                   <li>HTML5</li>
                   <li>CSS3</li>
@@ -502,7 +555,6 @@
                   <li>Responsive</li>
                   <li>Render</li>
                 </ul>
-
                 <div class="project__actions">
                   <a
                     class="btn btn--primary"
@@ -574,7 +626,6 @@
                   tenants in Nairobi — connecting premium residential and
                   commercial spaces with the right people.
                 </p>
-
                 <dl class="meta">
                   <div class="meta__item">
                     <dt>Problem Solved</dt>
@@ -587,14 +638,12 @@
                     <dd>Vercel</dd>
                   </div>
                 </dl>
-
                 <ul class="tags">
                   <li>Web Application</li>
                   <li>Full-Stack</li>
                   <li>APIs</li>
                   <li>Vercel</li>
                 </ul>
-
                 <div class="project__actions">
                   <a
                     class="btn btn--primary"
@@ -617,10 +666,11 @@
         </div>
       </section>
 
-      <!-- STACK -->
+      <!-- STACK (Belongs to Work) -->
       <section
         class="section section--paper"
         id="stack"
+        data-nav="work"
         aria-labelledby="stack-title"
       >
         <div class="container">
@@ -667,7 +717,12 @@
       </section>
 
       <!-- SERVICES -->
-      <section class="section" id="services" aria-labelledby="services-title">
+      <section
+        class="section"
+        id="services"
+        data-nav="services"
+        aria-labelledby="services-title"
+      >
         <div class="container">
           <header class="section-head">
             <p class="eyebrow">Services</p>
@@ -731,10 +786,11 @@
         </div>
       </section>
 
-      <!-- WHY -->
+      <!-- WHY (Belongs to Services) -->
       <section
         class="section section--ink"
         id="why"
+        data-nav="services"
         aria-labelledby="why-title"
       >
         <div class="container">
@@ -802,8 +858,13 @@
         </div>
       </section>
 
-      <!-- PROCESS -->
-      <section class="section" id="process" aria-labelledby="process-title">
+      <!-- PROCESS (Belongs to Services) -->
+      <section
+        class="section"
+        id="process"
+        data-nav="services"
+        aria-labelledby="process-title"
+      >
         <div class="container">
           <header class="section-head">
             <p class="eyebrow">Process</p>
@@ -863,6 +924,7 @@
       <section
         class="section section--paper"
         id="about"
+        data-nav="about"
         aria-labelledby="about-title"
       >
         <div class="container">
@@ -946,6 +1008,7 @@
       <section
         class="section section--ink"
         id="contact"
+        data-nav="contact"
         aria-labelledby="contact-title"
       >
         <div class="container contact__grid">
@@ -961,10 +1024,41 @@
 
             <ul class="contact-list">
               <li>
-                <a href="mailto:hello@yourdomain.com" data-href="email"
-                  ><span>Email</span
-                  ><span data-fill="email">hello@yourdomain.com</span></a
+                <a
+                  href="mailto:hello@yourdomain.com"
+                  data-href="email"
+                  style="flex: 1"
                 >
+                  <span>Email</span>
+                  <span data-fill="email">hello@yourdomain.com</span>
+                </a>
+                <button
+                  class="copy-btn"
+                  data-copy="hello@yourdomain.com"
+                  aria-label="Copy email to clipboard"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    width="16"
+                    height="16"
+                  >
+                    <rect
+                      x="9"
+                      y="9"
+                      width="13"
+                      height="13"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path
+                      d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                    ></path>
+                  </svg>
+                  <span>Copy</span>
+                </button>
               </li>
               <li>
                 <a href="tel:+254700000000" data-href="phone"
@@ -1088,7 +1182,7 @@
             <div class="footer__brand">
               <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
               <span class="brand__text">
-                <span class="brand__name" data-fill="name">[Your Name]</span>
+                <span class="brand__name">Dev.Minds</span>
                 <span class="brand__role">Software Developer · Kenya</span>
               </span>
             </div>
@@ -1102,7 +1196,7 @@
           <nav aria-label="Footer">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="#top">Home</a></li>
+              <li><a href="#home">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#work">Work</a></li>
               <li><a href="#services">Services</a></li>
@@ -1138,14 +1232,11 @@
         </div>
 
         <div class="footer__mega">
-          <span class="footer__mega-name" data-fill="name">[Your Name]</span>
+          <span class="footer__mega-name">Dev.Minds</span>
         </div>
 
         <div class="footer__bottom">
-          <p>
-            © <span id="year">2025</span>
-            <span data-fill="name">[Your Name]</span>. All rights reserved.
-          </p>
+          <p>© <span id="year">2025</span> Dev.Minds. All rights reserved.</p>
           <p class="footer__tagline">
             Built with purpose. Designed for people.
           </p>
@@ -1153,7 +1244,7 @@
       </div>
     </footer>
 
-    <!-- MODALS -->
+    <!-- MODALS (Same as before, just name changed) -->
     <div
       class="case-modal"
       id="case-omnipulse"
@@ -1211,12 +1302,6 @@
               >Confirm the exact stack used and update this line</span
             >
             — HTML5, CSS3, JavaScript.
-          </p>
-          <h3>Design &amp; UX</h3>
-          <p>
-            The design prioritises readability and rhythm: generous spacing, a
-            consistent type scale and restrained accent colour so the content —
-            not the decoration — carries the page.
           </p>
           <h3>Outcome</h3>
           <p>Project outcome details to be added.</p>
@@ -1414,6 +1499,20 @@
       </div>
     </div>
 
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        width="20"
+        height="20"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+
     <!-- STRUCTURED DATA -->
     <script type="application/ld+json">
       {
@@ -1422,7 +1521,7 @@
           {
             "@type": "Person",
             "@id": "https://yourdomain.com/#person",
-            "name": "[Your Name]",
+            "name": "Dev.Minds",
             "jobTitle": "Software Developer",
             "description": "Kenyan software developer building modern websites, web applications and digital products.",
             "url": "https://yourdomain.com/",
@@ -1446,7 +1545,7 @@
             "@type": "WebSite",
             "@id": "https://yourdomain.com/#website",
             "url": "https://yourdomain.com/",
-            "name": "[Your Name] — Software Developer in Kenya",
+            "name": "Dev.Minds — Software Developer in Kenya",
             "description": "Portfolio of a Kenyan software developer building websites, web applications and digital products.",
             "publisher": { "@id": "https://yourdomain.com/#person" },
             "inLanguage": "en"
